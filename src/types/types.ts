@@ -36,6 +36,7 @@ export interface QueryParams {
   limit?: number;
   ordering?: string;
   key?: string | null;
+  status?: string | null;
 }
 
 export interface Issue {

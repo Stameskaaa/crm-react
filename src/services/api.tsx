@@ -104,7 +104,7 @@ async function getSortedDesigners(params?: QueryParams, count: number = 10) {
       }
     }
 
-    //мда)
+    //мда как я должен делать сортировку по этому)
     return resultDesignerArray;
   } catch (error) {
     console.log(error);

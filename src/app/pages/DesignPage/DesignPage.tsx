@@ -41,20 +41,21 @@ export const DesignPage = () => {
     setTimerState(timer);
 
     return () => clearTimeout(timer);
-  }, [page, sort, value]);
+  }, [page, sort, value, status]);
 
   const getDesignerRequest = async () => {
     try {
       const limit = 16;
       setLoading(true);
+
       const designerList = await getDesigner({
         page,
         limit,
         ordering: sort,
-        // status: 'New',
+        status: status === 'In Progress' || status === 'Done' ? status : null,
         key: value.trim().length === 0 ? null : value,
       });
-      setPageCount(designerList.data.count / limit);
+      setPageCount(Math.ceil(designerList.data.count / limit));
       setDesignerList(designerList.data.results);
     } catch (error) {
       console.log(error);
@@ -91,10 +92,10 @@ export const DesignPage = () => {
 
           {designerList.length > 0 ? (
             <>
-              {designerList.map((designer) => {
+              {designerList.map((designer, index) => {
                 return (
                   <DesignComponent
-                    key={designer.username}
+                    key={index}
                     src={designer.avatar}
                     name={designer.username}
                     tasks={designer.issues}
