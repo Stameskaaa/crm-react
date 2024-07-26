@@ -8,6 +8,7 @@ export const useTheme = () => {
       return 'light';
     }
   });
+
   useLayoutEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
