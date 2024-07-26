@@ -25,7 +25,11 @@ export const MainPage = () => {
       const responseComments = await getComment();
 
       if (responseComments?.data) {
-        dispatch(setLastsComments(responseComments.data.slice(responseComments.data.length - 10)));
+        dispatch(
+          setLastsComments(
+            responseComments.data.slice(responseComments.data.length - 10).reverse(),
+          ),
+        );
       } else {
         console.log('comments Empty or error');
       }

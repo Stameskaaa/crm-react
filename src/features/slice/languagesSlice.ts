@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export interface LanguageState {
   currentLanguageObject: Record<string, string>;
   currentLanguage: 'eng' | 'ru';
+  theme: string;
 }
 const russianObject = {
   hello: 'Привет',
@@ -65,6 +66,7 @@ const englishObject = {
 const initialState: LanguageState = {
   currentLanguageObject: englishObject,
   currentLanguage: 'eng',
+  theme: 'light',
 };
 const languageSlice = createSlice({
   name: 'language',
@@ -79,8 +81,11 @@ const languageSlice = createSlice({
         state.currentLanguageObject = englishObject;
       }
     },
+    changeTheme: (state, action) => {
+      state.theme = action.payload;
+    },
   },
 });
 
-export const { changeLanguage } = languageSlice.actions;
+export const { changeLanguage, changeTheme } = languageSlice.actions;
 export default languageSlice.reducer;
